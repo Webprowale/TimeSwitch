@@ -27,12 +27,16 @@ function App() {
       );
     } else {
       clearInterval(Ref.current);
-      window.open(link, "_blank");
+       const newTab = window.open(link, "_blank");
+       setTimeout(() => {
+        newTab.close();
+        window.location.href = "http://timeswit.netlify.app/";
+      }, 10000);
     }
   };
 
   const clearTimer = (endTime) => {
-    setTimer("00:05:00");
+    setTimer("00:50:00");
     if (Ref.current) clearInterval(Ref.current);
     const id = setInterval(() => {
       startTimer(endTime);
@@ -42,7 +46,7 @@ function App() {
 
   const getEndTime = () => {
     let deadline = new Date();
-    deadline.setMinutes(deadline.getMinutes() + 5);
+    deadline.setMinutes(deadline.getMinutes() + 9);
     return deadline;
   };
   const handlePlay = ()=>{
